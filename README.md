@@ -2,10 +2,14 @@
 
 ## shell basic
 
-[入门](./shell-basic/01.md)
+[入门](./shell-basc/01.md)
 
-[运算符](./shell-basic/02.md)
+[运算符](./shell-basc/02.md)
 
-[字符串和数组](./shell-basic/03.md)
+[字符串和数组](./shell-basc/03.md)
 
-[条件控制](./shell-basic/04.md)
+[条件控制](./shell-basc/04.md)
+
+[函数](./shell-basc/04.md)
+
+[其它](./shell-basc/04.md)
