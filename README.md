@@ -10,6 +10,6 @@
 
 [条件控制](./shell-basc/04.md)
 
-[函数](./shell-basc/04.md)
+[函数](./shell-basc/05.md)
 
-[其它](./shell-basc/04.md)
+[其它](./shell-basc/06.md)
