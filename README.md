@@ -13,3 +13,8 @@
 [函数](./shell-basc/05.md)
 
 [其它](./shell-basc/06.md)
+
+
+##
+
+[windows下使用shell命令](http://blog.csdn.net/zhibuguonicuo/article/details/50494208)
