@@ -11,10 +11,10 @@
 mysql=`which mysql
 `
 #发送单个命令
-$mysql emwjs -u root -p admin -e "show databases;"
+$mysql -u root -p  ec_shop -e "show databases;"
 
 #发送多个命令
-$mysql emwjs -u root -p admin <<EOF
+$mysql -u root -p ec_shop <<EOF
 show tables;
 select * from ea_emp;
 EOF
