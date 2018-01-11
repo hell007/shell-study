@@ -1,3 +1,7 @@
+
+# 一键安装tomcat
+
+```
 #install tomcat
 sduo su
 mkdir /usr/local/tomcat
@@ -8,3 +12,4 @@ tar -xvf apache-tomcat-7.0.56.tar.gz
 sed -i 's/8080/80/' apache-tomcat-7.0.56/conf/server.xml
 #startup
 nohup ./apache-tomcat-7.0.56/bin/startup.sh
+```
