@@ -1,3 +1,7 @@
+
+#一键安装java环境
+
+```
 sudo su #切换到root权限
 mkdir /usr/local/java
 cd /usr/local/java
@@ -23,3 +27,4 @@ fi
 #update environment
 source /etc/environment  
 ehco "jdk is installed !"
+```
