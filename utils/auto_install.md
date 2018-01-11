@@ -1,4 +1,16 @@
 #!/bin/bash
+#定义变量
+
+#java环境
+jdk_version="jdk-8u121-linux-x64.rpm"
+jdk_wget="http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-linux-x64.rpm"
+
+#mysql配置
+mysql_version="mysql57-community-release-el7-9.noarch.rpm"
+mysql_wget="https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm"
+
+
+
 # 初始化
 init_setting(){
 	#network setting
@@ -48,16 +60,22 @@ install_jdk(){
 		echo "----------jdk exist!-----------"
 		return
 	fi
-	if [ ! -f "jdk-8u121-linux-x64.rpm" ]
+	#if [ ! -f jdk-8u121-linux-x64.rpm ]
+	if [ ! -f $jdk_version ]
 	then
-	 echo "jdk not exist!"
-	 wget  -c -P /root --no-check-certificate --no-cookie --header "Cookie:s_nr=1489927766492;s_cc=true;oraclelicense=accept-securebackup-cookie;gpw_e24=2F;s_sq=oracleotnlive%2Coracleglobal%3D%2526pid%253Dotn%25253Aen-us%25253A%25252Fjava%25252Fjavase%25252Fdownloads%25252Fjdk8-downloads-2133151.html%2526pidt%253D1%2526oid%253Dfunctiononclick(event)%25257BacceptAgreement(window.self%25252C'jdk-8u121-oth-JPR')%25253B%25257D%2526oidt%253D2%2526ot%253DRADIO"  http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-linux-x64.rpm
+	 	echo "jdk not exist!"
+		#wget  -c -P /root --no-check-certificate --no-cookie --header "Cookie:s_nr=1489927766492;s_cc=true;oraclelicense=accept-securebackup-cookie;gpw_e24=2F;s_sq=oracleotnlive%2Coracleglobal%3D%2526pid%253Dotn%25253Aen-us%25253A%25252Fjava%25252Fjavase%25252Fdownloads%25252Fjdk8-downloads-2133151.html%2526pidt%253D1%2526oid%253Dfunctiononclick(event)%25257BacceptAgreement(window.self%25252C'jdk-8u121-oth-JPR')%25253B%25257D%2526oidt%253D2%2526ot%253DRADIO"  http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-linux-x64.rpm
+		
+		wget  -c -P /root --no-check-certificate --no-cookie --header "Cookie:s_nr=1489927766492;s_cc=true;oraclelicense=accept-securebackup-cookie;gpw_e24=2F;s_sq=oracleotnlive%2Coracleglobal%3D%2526pid%253Dotn%25253Aen-us%25253A%25252Fjava%25252Fjavase%25252Fdownloads%25252Fjdk8-downloads-2133151.html%2526pidt%253D1%2526oid%253Dfunctiononclick(event)%25257BacceptAgreement(window.self%25252C'jdk-8u121-oth-JPR')%25253B%25257D%2526oidt%253D2%2526ot%253DRADIO"  $jdk_wget
+	
 	fi
-	rpm -i jdk-8u121-linux-x64.rpm
+	#rpm -i jdk-8u121-linux-x64.rpm
+	rpm -i $jdk_version
 	if [ $? -eq 0 ]
 	then 
 	echo "install jdk success!"
-	rm -f jdk-8u121-linux-x64.rpm
+	#rm -f jdk-8u121-linux-x64.rpm
+	rm -f $jdk_version
 	else
 	echo "install jdk failure!"
 	fi
@@ -68,13 +86,16 @@ install_jdk(){
 install_mysql(){
 	bakdir=`pwd`/mysqlbackup/
 	configpath=/etc/my.cnf
-	wget https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
-	yum localinstall mysql57-community-release-el7-9.noarch.rpm
+	#wget https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
+	wget $mysql_wget
+	#yum localinstall mysql57-community-release-el7-9.noarch.rpm
+	yum localinstall $mysql_version
 	yum repolist enabled | grep "mysql.*-community.*"
 	if [ $? -eq 0 ]
 	then 
 	echo "install mysql source success!"
-	rm -f mysql57-community-release-el7-9.noarch.rpm*
+	#rm -f mysql57-community-release-el7-9.noarch.rpm*
+	rm -f $mysql_version*
 	yum install -y mysql-community-server
 	if [ ! -d "$bakdir" ]; then mkdir $bakdir; fi 
 	cp $configpath $bakdir
