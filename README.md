@@ -19,3 +19,5 @@
 ## 工具、环境
 
 [windows下使用shell命令](http://blog.csdn.net/zhibuguonicuo/article/details/50494208)
+
+[linux命令行](http://blog.csdn.net/hursing/article/details/52230243)
