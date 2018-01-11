@@ -1,5 +1,5 @@
 
-#一键安装java环境
+# 一键安装java环境
 
 ```
 sudo su #切换到root权限
