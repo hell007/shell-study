@@ -1,11 +1,11 @@
 #!/bin/bash
-#定义变量
+# 定义变量
 
-#java环境
+# java环境
 jdk_version="jdk-8u121-linux-x64.rpm"
 jdk_wget="http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-linux-x64.rpm"
 
-#mysql配置
+# mysql配置
 mysql_version="mysql57-community-release-el7-9.noarch.rpm"
 mysql_wget="https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm"
 
@@ -24,7 +24,7 @@ init_setting(){
 	systemctl enable crond.service
 }
 
-#添加防火墙
+# 添加防火墙
 add_firewall_port(){
 	ssh_port=""
 	while [ "$ssh_port" != "exit"   ]
@@ -34,21 +34,21 @@ add_firewall_port(){
 		eval $add_script
 		if [ $? -eq 0 ]
 		then
-		echo "$add_script success!"
+			echo "$add_script success!"
 		fi
 	done
 	echo "add firewall rule success!"
 	firewall-cmd --reload
 }
 
-#安装ftp
+# 安装ftp
 install_lrzsz(){
 	yum install -y lrzsz
 	if [ $? -eq 0 ]
 	then 
-	echo "install lrzsz success!"
+		echo "install lrzsz success!"
 	else
-	echo "install lrzsz failure!"
+		echo "install lrzsz failure!"
 	fi
 }
 
@@ -73,16 +73,16 @@ install_jdk(){
 	rpm -i $jdk_version
 	if [ $? -eq 0 ]
 	then 
-	echo "install jdk success!"
-	#rm -f jdk-8u121-linux-x64.rpm
-	rm -f $jdk_version
+		echo "install jdk success!"
+		#rm -f jdk-8u121-linux-x64.rpm
+		rm -f $jdk_version
 	else
-	echo "install jdk failure!"
+		echo "install jdk failure!"
 	fi
 	java -version
 }
 
-#一键安装mysql
+# 一键安装mysql
 install_mysql(){
 	bakdir=`pwd`/mysqlbackup/
 	configpath=/etc/my.cnf
@@ -93,7 +93,7 @@ install_mysql(){
 	yum repolist enabled | grep "mysql.*-community.*"
 	if [ $? -eq 0 ]
 	then 
-	echo "install mysql source success!"
+		echo "install mysql source success!"
 	#rm -f mysql57-community-release-el7-9.noarch.rpm*
 	rm -f $mysql_version*
 	yum install -y mysql-community-server
@@ -112,7 +112,7 @@ install_mysql(){
 	fi
 }
 
-#一键安装nginx
+# 一键安装nginx
 install_nginx(){
 	yumSourceDir=/etc/yum.repos.d/nginx.repo
 	echo "[nginx]" >> $yumSourceDir
@@ -128,14 +128,14 @@ install_nginx(){
 	echo "start nginx service success!"
 }
 
-#
+# 安装图形管理化界面
 install_shadowsocks(){
 	yum install -y gcc automake autoconf libtool make build-essential autoconf libtool 
 	yum install -y curl curl-devel zlib-devel openssl-devel perl perl-devel cpio expat-devel gettext-devel
 	git clone https://github.com/clowwindy/shadowsocks-libev.git
 	if [ $? -ne 0 ]
 	then 
-	echo "download git source code failure!"
+		echo "download git source code failure!"
 	return
 	fi
 	echo "download git source code success!"
@@ -156,7 +156,7 @@ install_shadowsocks(){
 	echo -e "{\n\"server\":\"$ip\",\n\"server_port\":$port,\n\"local_address\": \"127.0.0.1\",\n\"local_port\":1080,\n\"password\":\"$password\",\n\"timeout\":300,\n\"method\":\"aes-256-cfb\",\n\"fast_open\": false\n}" >> $config_path/config.json
 	if [ $? -ne 0 ]
 	then
-	echo "create shadowsocks setting please try again!"
+		echo "create shadowsocks setting please try again!"
 	return
 	fi
 	echo -e "create shadowsocks setting success!\nyour ip:$ip\nport:$port\npassword:$password"
@@ -166,7 +166,8 @@ install_shadowsocks(){
 }
 
 
-show(){
+# 操作选项
+select_options(){
 	echo -e "\n"
 	echo "----------------------------------"  
 	echo "please enter your choise:"  
@@ -179,7 +180,8 @@ show(){
 	echo "(6) install nginx" 
 	echo "(7) install shadowsocks" 
 	echo "(8) Exit Menu"  
-	echo "----------------------------------"  
+	echo "----------------------------------" 
+	echo "enter your want to operate oprion ?" 
 }
 
 # 菜单图形界面
@@ -187,19 +189,19 @@ menu(){
 	input=0
 	while [ $input -ne 8 ]
 	do
-	show
-	read input
-	case $input in  
-		0) default_auto_install;;  
-		1) init_setting;;  
-		2) add_firewall_port;;  
-		3) install_lrzsz;;  
-		4) install_jdk;;  
-		5) install_mysql;;  
-		6) install_nginx;;
-		7) install_shadowsocks;;
-		8) exit;;  
-	esac
+		select_options
+		read input
+		case $input in  
+			0) default_auto_install;;  
+			1) init_setting;;  
+			2) add_firewall_port;;  
+			3) install_lrzsz;;  
+			4) install_jdk;;  
+			5) install_mysql;;  
+			6) install_nginx;;
+			7) install_shadowsocks;;
+			8) exit;;  
+		esac
 	done
 }
 
@@ -213,5 +215,5 @@ default_auto_install(){
 	init_setting
 }
 
-#调用
+#调用菜单
 menu
