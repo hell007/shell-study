@@ -1,3 +1,7 @@
+
+# 一键安装
+
+```
 #!/bin/bash
 # Centos 6.4上面用Shell脚本一键安装mysql 5.6.15 
 if [ `uname -m` == "x86_64" ];then
@@ -97,3 +101,4 @@ chmod 755 /etc/init.d/mysqld
 /etc/init.d/mysqld start
 ln -sb ${mysqlBasedir}/bin/mysql /usr/bin/mysql
 chmod 755 /usr/bin/mysql
+```
