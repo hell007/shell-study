@@ -49,8 +49,8 @@ echo -e "next\n"
 
 #删除行
 sed '3d' ./test
-sed '2,$d' ./test
-sed '/number 1/d' ./test
+sed '2,$d' ./test #删除 2,2
+sed '/number 1/d' ./test #删除含有 number 1 这行
 #删除两个文本模式来删除某个范围的行，第一个开启删除功能，第二个关闭删除功能
 sed '/1/,/3/d' ./test
 
