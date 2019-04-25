@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # mysql_backup.sh: backup mysql databases and keep newest 5 days backup.  
 #  
 # ${db_user} is mysql username  
