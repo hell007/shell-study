@@ -21,3 +21,9 @@
 [windows下使用shell命令](http://blog.csdn.net/zhibuguonicuo/article/details/50494208)
 
 [linux命令行](http://blog.csdn.net/hursing/article/details/52230243)
+
+[Win下Cygwin的安装](https://blog.csdn.net/heshushun/article/details/78664384)
+
+[在windows下使用Cygwin模拟unix环境，并安装apt-cyg，repo等工具](https://blog.csdn.net/lee244868149/article/details/52830968)
+
+[Cygwin 镜像使用帮助](https://mirrors.tuna.tsinghua.edu.cn/help/cygwin/)
