@@ -5,18 +5,19 @@
 1.连接数据库并发送命令
 
 ```
-#!/bin/bash
+#!/bin/sh
 
 #连接数据库
-mysql=`which mysql
-`
+mysql=`which mysql`
 #发送单个命令
-$mysql -u root -p  ec_shop -e "show databases;"
+#$mysql -u root -p  ec_shop -e "show databases;"
+$mysql -u root -p -h 127.0.0.1 jie -e "show databases;"
 
 #发送多个命令
-$mysql -u root -p ec_shop <<EOF
+#$mysql -u root -p ec_shop <<EOF
+$mysql -u root -p -h 127.0.0.1 jie <<EOF
 show tables;
-select * from ea_emp;
+select * from jie_user;
 EOF
 ````
 
