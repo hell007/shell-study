@@ -10,7 +10,7 @@
 #连接数据库
 mysql=`which mysql`
 #发送单个命令
-#$mysql -u root -p  ec_shop -e "show databases;" //unix系统下
+#$mysql -u root -p -e "show databases;" //unix系统下
 #下面是cygwin在windows下连接mysql
 $mysql -u root -p -h 127.0.0.1 jie -e "show databases;"
 
