@@ -10,7 +10,8 @@
 #连接数据库
 mysql=`which mysql`
 #发送单个命令
-#$mysql -u root -p  ec_shop -e "show databases;"
+#$mysql -u root -p  ec_shop -e "show databases;" //unix系统下
+#下面是cygwin在windows下连接mysql
 $mysql -u root -p -h 127.0.0.1 jie -e "show databases;"
 
 #发送多个命令
@@ -29,20 +30,18 @@ EOF
 
 #redirecting SQL output to a variable
 
-MYSQL=`which mysql`
-dbs=`$MYSQL emwjs -u test -Bse 'show tables;'`
+mysql=`which mysql`
+dbs=`$mysql -u root -p -h 127.0.0.1 jie -Bse 'show tables;'`
 for db in $dbs
 do
-	echo $db
+    echo $db
 done
 
-
 #使用xml输出数据
-$MYSQL emwjs -u test -X -e 'select * from em_admin'
+$mysql -u root -p -h 127.0.0.1 jie -X -e 'select * from jie_user'
 
 #使用table标签输出数据
-$MYSQL emwjs -u test -H -e 'select * from em_admin'
-
+$mysql -u root -p -h 127.0.0.1 jie -H -e 'select * from jie_user'
 
 ```
 
@@ -51,6 +50,7 @@ $MYSQL emwjs -u test -H -e 'select * from em_admin'
 
 ```
 #!/bin/bash
+
 # send data to the the table in the MYSQL database
 
 MYSQL=`which mysql`
