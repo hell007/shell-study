@@ -19,7 +19,7 @@ backup_dir="/home/backup/mysql/"
 
 # 要备份的数据库名 #
 #dbs="$(${mysql} -u ${db_user} -h ${db_host} -p${db_password} -Bse 'show databases')" #
-dbs="csms-system"
+dbs="jie csms-system"
 
 # 要保留的备份天数 #
 backup_day=10
